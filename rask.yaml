@@ -1,0 +1,5 @@
+name: restdb
+
+tasks:
+  release: cargo build --release
+  local: echo "Updating..." && rask run release && cp ./target/release/restdb ~/bin/ && chmod +x ~/bin/restdb && echo "Updating complete!" && echo "" & true
