@@ -2,4 +2,10 @@ name: restdb
 
 tasks:
   release: cargo build --release
+  setup:
+    install: cargo install sqlx-cli
+    export: export DATABASE_URL="sqlite:.tmp/todos.db"
+    dir: mkdir .tmp || true
+    create: sqlx db create
+    migrate: sqlx migrate run
   local: echo "Updating..." && rask run release && cp ./target/release/restdb ~/bin/ && chmod +x ~/bin/restdb && echo "Updating complete!" && echo "" & true
