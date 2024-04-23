@@ -9,7 +9,8 @@ async-std = { version = "1.12.0", features = ["attributes"] }
 clap = { version = "4.5.4", features = ["derive", "unicode", "wrap_help"] }
 rocket = "0.5.0"
 # We're planning to support more than postgres and sqlite in the future.
-sqlx = { version = "0.7.4", features = ["runtime-async-std", "postgres", "sqlite"] }
+sqlx = { version = "0.7.4", features = ["runtime-async-std", "postgres", "sqlite", "uuid", "any", "macros", "migrate", "chrono", "ipnetwork", "json"] }
+tokio = { version = "1.0.0", features = ["rt", "rt-multi-thread", "macros"] }
 
 [profile.dev]
 opt-level = 0
