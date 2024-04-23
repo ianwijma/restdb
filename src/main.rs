@@ -6,12 +6,12 @@ mod api;
 
 #[derive(Subcommand, Debug, Clone)]
 enum Command {
-    /// Initialize a new rask entry
+    /// Start a RestDB instance
     Run(run::Arguments),
 }
 
 #[derive(Parser, Debug, Clone)]
-#[command(author, version, about = "Rask - The universal way of running tasks", long_about = None, propagate_version = true)]
+#[command(author, version, about = "RestDB - Turn any database into a rest API", long_about = None, propagate_version = true)]
 struct Arguments {
     #[command(subcommand)]
     command: Command

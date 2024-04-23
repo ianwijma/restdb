@@ -1,0 +1,35 @@
+name: Build RestDB
+run-name: ${{ github.actor }} is building 🚀
+on:
+  push:
+    branches-ignore:
+      - release
+
+jobs:
+  push:
+    name: building
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - release_for: Windows - X86_64
+            target: x86_64-pc-windows-gnu
+          - release_for: Linux - X86_64
+            target: x86_64-unknown-linux-musl
+# Broken: https://github.com/rust-build/rust-build.action/issues/88
+#          - release_for: Mac - X86_64
+#            target: x86_64-apple-darwin
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Compile rust
+        timeout-minutes: 10
+        id: compile
+        uses: rust-build/rust-build.action@v1.4.5
+        with:
+          RUSTTARGET: ${{ matrix.target }}
+          UPLOAD_MODE: none
